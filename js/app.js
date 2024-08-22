@@ -1,3 +1,5 @@
+// 
+
 document.addEventListener('DOMContentLoaded', function () {
     // List the navigation items
     const navItems = [
@@ -61,3 +63,36 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
+
+let lastScrollY = window.scrollY;
+
+let isScrolling;
+
+window.addEventListener('scroll', () => {
+    const navbar = document.getElementById('nav');
+    const ScrollToTop = document.getElementById('scrollToTop');
+
+    if (window.scrollY > lastScrollY) {
+        nav.classList.add('hidden');
+    } else {
+        nav.classList.remove('hidden');
+    }
+    lastScrollY = Window.scrollY;
+
+
+    // clear Time out function
+    clearTimeout(isScrolling);
+
+    // Show Scroll to Top button after scrolling below the fold
+    if (window.top > Window.scroll) {
+        ScrollToTop.classList.add('show');
+    } else {
+        ScrollToTop.classList.add('remove');
+    }
+
+});
+
+document.getElementById('ScrollToTop').addEventListener('click', () => {
+    window.scrollTo({ top: 0, behaviour: smooth });
+})
+

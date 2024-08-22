@@ -266,3 +266,69 @@ section.your-active-class .landing__container::after {
 		transform: rotate(360deg) translate(-1em) rotate(-360deg);
 	}
 }
+
+@media screen and (max-width: 768px) {
+	.navbar__menu {
+		background-color: #cc1;
+		position: absolute;
+		right: 0;
+		top: 0;
+		flex-direction: column;
+	}
+
+	.navbar__menu li {
+		margin: 0 15px;
+	}
+
+	.navbar__menu ul li a {
+		text-decoration: none;
+		color: brown;
+		padding: 10px 14px;
+		display: block;
+		font-size: 11px;
+	}
+}
+
+@media screen and (max-width: 608px) {
+	.navbar__menu {
+		background-color: green;
+		position: absolute;
+		right: 0;
+		top: 0;
+		flex-direction: column;
+	}
+
+	.navbar__menu li {
+		margin: 0 15px;
+	}
+
+	.navbar__menu ul li a {
+		text-decoration: none;
+		color: brown;
+		padding: 10px 14px;
+		display: block;
+		font-size: 10px;
+	}
+}
+
+@media screen and (max-width: 740px) {
+	.navbar__menu {
+		background-color: red;
+		position: absolute;
+		right: 0;
+		top: 0;
+		flex-direction: column;
+	}
+
+	.navbar__menu li {
+		margin: 0 15px;
+	}
+
+	.navbar__menu ul li a {
+		text-decoration: none;
+		color: brown;
+		padding: 10px 14px;
+		display: block;
+		font-size: 8px;
+	}
+}
