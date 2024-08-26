@@ -3,10 +3,10 @@
 document.addEventListener('DOMContentLoaded', function () {
     // List the navigation items
     const navItems = [
-        { name: "Section 1", link: "#section1" },
-        { name: "Section 2", link: "#section2" },
-        { name: "Section 3", link: "#section3" },
-        { name: "Section 4", link: "#section4" }
+        { name: "Save", link: "#section1" },
+        { name: "Invest", link: "#section2" },
+        { name: "Stories", link: "#section3" },
+        { name: "FAQs", link: "#section4" }
     ];
 
     // Select the empty UL element

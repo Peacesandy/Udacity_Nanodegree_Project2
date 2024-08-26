@@ -24,7 +24,7 @@ body {
 /* Typeography General*/
 h1 {
 	font-family: "Fira Sans", sans-serif;
-	font-size: 3em;
+	font-size: 20px;
 	margin: 2em 1rem;
 }
 
@@ -48,21 +48,33 @@ p {
 }
 
 /* ---- Layout Rules ---- */
+/* Main content adjustments */
 main {
-	margin: 10vh 1em 10vh;
+	margin: 2vh 1em 10vh; /* Reduce top margin to bring content closer to the navbar */
 }
 
+/* Main hero section */
 .main-hero {
-	min-height: 40vh;
-	padding-top: 3em;
+	min-height: 20vh;
+	padding: 20px 20px; /* Maintain side padding, no top padding */
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	align-items: center;
+	gap: 20px;
+	top: 0;
 }
 
+/* Image within main hero */
+.img_main__hero {
+	max-width: 80%; /* Image takes full width of its grid column */
+	height: auto;
+}
+
+/* General section adjustments */
 section {
 	position: relative;
-	min-height: 80vh;
+	min-height: 100vh;
 }
-
-/* ---- Module Rules ---- */
 
 /* Navigation Styles*/
 
@@ -267,9 +279,12 @@ section.your-active-class .landing__container::after {
 	}
 }
 
+/* Page Responsiveness */
+/* ---- Module Rules ---- */
+
 @media screen and (max-width: 768px) {
 	.navbar__menu {
-		background-color: #cc1;
+		background-color: #fff;
 		position: absolute;
 		right: 0;
 		top: 0;
@@ -291,7 +306,7 @@ section.your-active-class .landing__container::after {
 
 @media screen and (max-width: 608px) {
 	.navbar__menu {
-		background-color: green;
+		background-color: #fff;
 		position: absolute;
 		right: 0;
 		top: 0;
@@ -313,7 +328,7 @@ section.your-active-class .landing__container::after {
 
 @media screen and (max-width: 740px) {
 	.navbar__menu {
-		background-color: red;
+		background-color: #fff;
 		position: absolute;
 		right: 0;
 		top: 0;
