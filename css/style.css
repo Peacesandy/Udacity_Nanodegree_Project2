@@ -51,6 +51,9 @@ p {
 /* Main content adjustments */
 main {
 	margin: 2vh 1em 10vh; /* Reduce top margin to bring content closer to the navbar */
+	flex: 1; /* Allow the content to grow and fill the space between header and footer */
+	padding-top: 4em; /* Adjust to ensure content is not hidden under the header */
+	padding-bottom: 4em; /* Ensure content doesn't overlap the footer */
 }
 
 /* Main hero section */
@@ -94,10 +97,23 @@ section {
 
 .active {
 	background-color: rgb(27, 27, 27);
-	color: #fff;
+	color: red;
 	font-weight: bold;
 	border: 20px;
 	padding: 10px;
+}
+
+nav ul li a.active {
+	color: red;
+	font-weight: bold;
+}
+
+/* Highlight the active section */
+section.active {
+	background-color: red;
+	border-left: 5px solid red;
+	padding-left: 10px;
+	font-weight: bold;
 }
 
 .navbar__menu ul {
@@ -149,10 +165,14 @@ section {
 	background: #000;
 	padding: 3em;
 	color: #fff;
+	text-align: center;
+	width: 100%;
+	box-sizing: border-box;
 }
 
 .page__footer p {
 	color: #fff;
+	margin: 0;
 }
 
 /* ---- Theme Rules ---- */

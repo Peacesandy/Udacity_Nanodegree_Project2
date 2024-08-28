@@ -1,5 +1,3 @@
-// 
-
 document.addEventListener('DOMContentLoaded', function () {
     // List the navigation items
     const navItems = [
@@ -22,30 +20,44 @@ document.addEventListener('DOMContentLoaded', function () {
         ul.appendChild(li);
     });
 
-    // After dynamically adding the navigation items, we need to select them
+    // Select all sections and nav links
     const sections = document.querySelectorAll('section');
     const navLinks = document.querySelectorAll('nav ul li a');
 
+    // Function to highlight the section in view and its corresponding nav link
     function highlightSection() {
+        let activeSectionIndex = -1;
+        let minDistance = Infinity;
+
         sections.forEach((section, index) => {
             const rect = section.getBoundingClientRect();
 
-            if (rect.top >= 0 && rect.top <= window.innerHeight / 2) {
-                // Remove the active class from all links
-                navLinks.forEach((link) => link.classList.remove('active'));
+            // Calculate the distance from the top of the viewport to the top of the section
+            const distance = Math.abs(rect.top);
 
-                // Add the active class to the current section's link
-                navLinks[index].classList.add('active');
+            // Update the active section if this section is closer to the top
+            if (distance < minDistance && rect.top >= 0) {
+                minDistance = distance;
+                activeSectionIndex = index;
             }
         });
+
+        // Remove the active class from all links and sections
+        navLinks.forEach(link => link.classList.remove('active'));
+        sections.forEach(section => section.classList.remove('active'));
+
+        // Add the active class to the link and section corresponding to the active section
+        if (activeSectionIndex !== -1) {
+            navLinks[activeSectionIndex].classList.add('active');
+            sections[activeSectionIndex].classList.add('active');
+        }
     }
 
-
-    // Highlight the section on scroll
+    // Highlight the section when the user scrolls
     window.addEventListener('scroll', highlightSection);
     highlightSection(); // Initial call to highlight the first section
 
-    // Scroll to section on link click
+    // Smooth scrolling to section on link click
     navLinks.forEach(link => {
         link.addEventListener('click', function (event) {
             event.preventDefault();
@@ -62,37 +74,19 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     });
+
+    // Optional: Scroll to top button functionality
+    const scrollToTopBtn = document.getElementById('scrollToTop');
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > window.innerHeight) {
+            scrollToTopBtn.classList.add('show');
+        } else {
+            scrollToTopBtn.classList.remove('show');
+        }
+    });
+
+    scrollToTopBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
 });
-
-let lastScrollY = window.scrollY;
-
-let isScrolling;
-
-window.addEventListener('scroll', () => {
-    const navbar = document.getElementById('nav');
-    const ScrollToTop = document.getElementById('scrollToTop');
-
-    if (window.scrollY > lastScrollY) {
-        nav.classList.add('hidden');
-    } else {
-        nav.classList.remove('hidden');
-    }
-    lastScrollY = Window.scrollY;
-
-
-    // clear Time out function
-    clearTimeout(isScrolling);
-
-    // Show Scroll to Top button after scrolling below the fold
-    if (window.top > Window.scroll) {
-        ScrollToTop.classList.add('show');
-    } else {
-        ScrollToTop.classList.add('remove');
-    }
-
-});
-
-document.getElementById('ScrollToTop').addEventListener('click', () => {
-    window.scrollTo({ top: 0, behaviour: smooth });
-})
-
