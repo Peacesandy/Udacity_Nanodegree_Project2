@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
         ul.appendChild(li);
     });
 
-    // Select all sections and nav links
+    // After dynamically adding the navigation items, we need to select them
     const sections = document.querySelectorAll('section');
     const navLinks = document.querySelectorAll('nav ul li a');
 
@@ -90,3 +90,74 @@ document.addEventListener('DOMContentLoaded', function () {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 });
+
+function highlightSection() {
+    sections.forEach((section, index) => {
+        const rect = section.getBoundingClientRect();
+
+        if (rect.top >= 0 && rect.top <= window.innerHeight / 2) {
+            // Remove the active class from all links
+            navLinks.forEach((link) => link.classList.remove('active'));
+
+            // Add the active class to the current section's link
+            navLinks[index].classList.add('active');
+        }
+    });
+}
+
+// Highlight the section on scroll
+window.addEventListener('scroll', highlightSection);
+highlightSection(); // Initial call to highlight the first section
+
+// Scroll to section on link click
+navLinks.forEach(link => {
+    link.addEventListener('click', function (event) {
+        event.preventDefault();
+        const targetId = this.getAttribute('href').substring(1);
+        const targetSection = document.getElementById(targetId);
+
+        if (targetSection) {
+            window.scrollTo({
+                top: targetSection.offsetTop,
+                behavior: 'smooth'
+            });
+        } else {
+            console.error(`Element with ID ${targetId} not found.`);
+        }
+    });
+});
+
+let lastScrollY = window.scrollY;
+let isScrolling;
+
+window.addEventListener('scroll', () => {
+    const navbar = document.getElementById('nav');
+    const scrollToTop = document.getElementById('scrollToTop');
+
+    if (window.scrollY > lastScrollY) {
+        navbar.classList.add('hidden');
+    } else {
+        navbar.classList.remove('hidden');
+    }
+    lastScrollY = window.scrollY;
+
+    // Clear timeout function
+    clearTimeout(isScrolling);
+
+    // Show Scroll to Top button after scrolling below the fold
+    if (window.scrollY > window.innerHeight) {
+        scrollToTop.classList.add('show');
+    } else {
+        scrollToTop.classList.remove('show');
+    }
+
+    // Set a timeout to run after scrolling ends
+    isScrolling = setTimeout(() => {
+        navbar.classList.remove('hidden');
+    }, 300);
+});
+
+document.getElementById('scrollToTop').addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
